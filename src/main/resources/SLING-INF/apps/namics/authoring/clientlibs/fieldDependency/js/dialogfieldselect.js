@@ -12,7 +12,7 @@
          *
          * @param sourceElement The source element object for which to register events
          */
-        registerEvents (sourceElement) {
+        registerEvents(sourceElement) {
             var ctrl = this;
             sourceElement.$el.on("selected", function (event) {
                 ctrl.handleVisibility(sourceElement, event);
@@ -23,7 +23,7 @@
          * @param sourceElement The source element object for which to get its value
          * @returns Value of source field
          */
-        getValue (sourceElement) {
+        getValue(sourceElement) {
             return sourceElement.$el.find(".coral-Select-select option:selected").val();
         }
     }

@@ -96,7 +96,9 @@
                 var sourceVisibilities = $el.data(ns.AbstractDialogField.DATA_ATTR_VISIBLE) || [];
                 if ($el.find(visibleElementsSelector).addBack(visibleElementsSelector).length) {
                     // add id of source element to visible attribute
-                    var filteredSourceVisibilities = sourceVisibilities.filter(e => e !== sourceElement.id);
+                    var filteredSourceVisibilities = sourceVisibilities.filter(e => e !== sourceElement.id
+                        )
+                    ;
                     filteredSourceVisibilities.push(sourceElement.id);
                     $el.data(ns.AbstractDialogField.DATA_ATTR_VISIBLE, filteredSourceVisibilities);
                     // call function to show element
@@ -105,7 +107,9 @@
                     $el.attr("aria-required", $el.attr(ns.AbstractDialogField.ATTR_REQUIRED));
                 } else {
                     // remove id of source element from visible attribute
-                    var filteredSourceVisibilities = sourceVisibilities.filter(e => e !== sourceElement.id);
+                    var filteredSourceVisibilities = sourceVisibilities.filter(e => e !== sourceElement.id
+                        )
+                    ;
                     $el.data(ns.AbstractDialogField.DATA_ATTR_VISIBLE, filteredSourceVisibilities);
                     if (!filteredSourceVisibilities.length) {
                         // call function to hide element
@@ -132,7 +136,9 @@
 
             // show / hide tab itself
             var sourceVisibilities = $paneTargetElement.data(ns.AbstractDialogField.DATA_ATTR_VISIBLE) || [];
-            var filteredSourceVisibilities = sourceVisibilities.filter(e => e !== sourceElementId);
+            var filteredSourceVisibilities = sourceVisibilities.filter(e => e !== sourceElementId
+                )
+            ;
 
             // show / hide fields within the tab
             $fields.each(function () {
@@ -160,14 +166,18 @@
 
             if (isPaneVisible) {
                 // add id of source element to visible attribute
-                var filteredSourceVisibilities = sourceVisibilities.filter(e => e !== sourceElementId);
+                var filteredSourceVisibilities = sourceVisibilities.filter(e => e !== sourceElementId
+                    )
+                ;
                 filteredSourceVisibilities.push(sourceElementId);
                 $paneTargetElement.data(ns.AbstractDialogField.DATA_ATTR_VISIBLE, filteredSourceVisibilities);
                 // show tab pane
                 ctrl.show($paneTargetElement);
             } else {
                 // remove id of source element from visible attribute
-                var filteredSourceVisibilities = sourceVisibilities.filter(e => e !== sourceElementId);
+                var filteredSourceVisibilities = sourceVisibilities.filter(e => e !== sourceElementId
+                    )
+                ;
                 $paneTargetElement.data(ns.AbstractDialogField.DATA_ATTR_VISIBLE, filteredSourceVisibilities);
                 if (!filteredSourceVisibilities.length) {
                     // hide tab pane

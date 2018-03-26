@@ -1,6 +1,13 @@
 {
-	"jcr:primaryType": "cq:ClientLibraryFolder",
-	"sling:resourceType": "widgets/clientlib",
-	"categories": [ "cq.authoring.dialog", "cq.authoring.dialog.rte.coralui3", "namics.authoring.main" ],
-	"dependencies": [ "namics.cq.authoring.dialog", "namics.cq.authoring.dialog.rte.coralui3" ]
+  "jcr:primaryType": "cq:ClientLibraryFolder",
+  "sling:resourceType": "widgets/clientlib",
+  "categories": [
+    "cq.authoring.dialog",
+    "cq.authoring.dialog.rte.coralui3",
+    "namics.authoring.main"
+  ],
+  "dependencies": [
+    "namics.cq.authoring.dialog",
+    "namics.cq.authoring.dialog.rte.coralui3"
+  ]
 }
