@@ -6,5 +6,10 @@
   ],
   "dependencies": [
     "granite.jquery"
+  ],
+  "jsProcessor": [
+    "languageIn:ECMASCRIPT6",
+    "min:typescript",
+    "min:gcc"
   ]
 }
