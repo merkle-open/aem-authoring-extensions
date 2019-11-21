@@ -80,6 +80,7 @@
 
             sourceElement.$targetElements.each(function () {
                 var $el = $(this),
+                    $foundationField = $el.adaptTo("foundation-field"),
                     visibleElementsSelector = "[" + ns.AbstractDialogField.ATTR_PREFIX_VALUE + sourceElement.id + "~='" + value + "']";
 
                 if (ctrl.isPane($el)) {
@@ -88,8 +89,8 @@
                 }
 
                 // save if field was required into separate data attribute
-                if (!$el.attr(ns.AbstractDialogField.ATTR_REQUIRED)) {
-                    $el.attr(ns.AbstractDialogField.ATTR_REQUIRED, $el.attr("aria-required"));
+                if (!$el.attr(ns.AbstractDialogField.ATTR_REQUIRED) && $foundationField !== undefined) {
+                    $el.attr(ns.AbstractDialogField.ATTR_REQUIRED, $foundationField.isRequired());
                 }
 
                 // show or hide target element
@@ -104,7 +105,9 @@
                     // call function to show element
                     ctrl.show($el);
                     // set original "aria-required" attribute if target element is being shown
-                    $el.attr("aria-required", $el.attr(ns.AbstractDialogField.ATTR_REQUIRED));
+                    if ($foundationField !== undefined) {
+                        $foundationField.setRequired($el.attr(ns.AbstractDialogField.ATTR_REQUIRED) === "true");
+                    }
                 } else {
                     // remove id of source element from visible attribute
                     var filteredSourceVisibilities = sourceVisibilities.filter(e => e !== sourceElement.id
@@ -115,11 +118,13 @@
                         // call function to hide element
                         ctrl.hide($el);
                         // remove original "aria-required" attribute if target element is being hidden
-                        $el.attr("aria-required", false);
+                        if ($foundationField !== undefined) {
+                            $foundationField.setRequired(false);
+                        }
+                        // trigger validation after setting or removing the "aria-required" attribute
+                        $el.checkValidity();
                     }
                 }
-                // trigger validation after setting or removing the "aria-required" attribute
-                $el.checkValidity();
             });
         }
 
@@ -142,26 +147,31 @@
 
             // show / hide fields within the tab
             $fields.each(function () {
-                var $el = $(this);
+                var $el = $(this),
+                    $foundationField = $el.adaptTo("foundation-field");
                 // save if field was required into separate data attribute
-                if (!$el.attr(ns.AbstractDialogField.ATTR_REQUIRED)) {
-                    $el.attr(ns.AbstractDialogField.ATTR_REQUIRED, $el.attr("aria-required"));
+                if (!$el.attr(ns.AbstractDialogField.ATTR_REQUIRED) && $foundationField !== undefined) {
+                    $el.attr(ns.AbstractDialogField.ATTR_REQUIRED, $foundationField.isRequired());
                 }
 
                 // show or hide target element
                 if (isPaneVisible) {
                     ctrl.show($el);
                     // set original "aria-required" attribute if target element is being shown
-                    $el.attr("aria-required", $el.attr(ns.AbstractDialogField.ATTR_REQUIRED));
+                    if ($foundationField !== undefined) {
+                        $foundationField.setRequired($el.attr(ns.AbstractDialogField.ATTR_REQUIRED) === "true");
+                    }
                 } else {
                     if (!filteredSourceVisibilities.length) {
                         ctrl.hide($el);
                         // remove original "aria-required" attribute if target element is being hidden
-                        $el.attr("aria-required", false);
+                        if ($foundationField !== undefined) {
+                            $foundationField.setRequired(false);
+                        }
+                        // trigger validation after setting or removing the "aria-required" attribute
+                        $el.checkValidity();
                     }
                 }
-                // trigger validation after setting or removing the "aria-required" attribute
-                $el.checkValidity();
             });
 
             if (isPaneVisible) {
