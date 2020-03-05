@@ -1,4 +1,4 @@
-# Touch UI Authoring Extensions for AEM 6.3
+# Touch UI Authoring Extensions for AEM 6.5
 
 System        | Status
 --------------|------------------------------------------------        
@@ -6,7 +6,7 @@ CI master     | [![Build Status][travis-master]][travis-url]
 CI develop    | [![Build Status][travis-develop]][travis-url]
 Dependency    | [![Maven Central][maven-central-version]][maven-central]
 
-With this project you will be able to use different authoring extensions in [Adobe Experience Manager 6.3](https://helpx.adobe.com/experience-manager/6-3/release-notes.html) Touch UI which lets you create improved dialogs.
+With this project you will be able to use different authoring extensions in [Adobe Experience Manager 6.5](https://docs.adobe.com/content/help/en/experience-manager-65/release-notes/release-notes.html) Touch UI which lets you create improved dialogs.
 
 ## Usage
 
@@ -15,7 +15,7 @@ With this project you will be able to use different authoring extensions in [Ado
     <dependency>
       <groupId>com.namics.oss.aem</groupId>
       <artifactId>authoring-extensions</artifactId>
-      <version>1.0.0</version>
+      <version>2.0.0</version>
     </dependency>
 ```
 
@@ -47,7 +47,7 @@ With the common AEM archetype it can be added within the embedded configuration 
 The following screen shot shows an example of a text field only being shown if the checkbox has been selected: 
 ![dialog](docs/field-dependency.jpg)
 
-Use the field dependency in your _cq_dialog.xml of AEM 6.3 (with Touch UI) as follows:
+Use the field dependency in your _cq_dialog.xml of AEM 6.5 (with Touch UI) as follows:
 
 ##### Source field (field that contains the value)
 Add attribute "fd-source-id" with a string identifier as its value.
@@ -83,7 +83,7 @@ You can add one or more values separated by space. If any of these values were s
 #### Validators
 
 ##### Regex validator
-Use the regex validator in your _cq_dialog.xml of AEM 6.3 (with Touch UI) as follows:
+Use the regex validator in your _cq_dialog.xml of AEM 6.5 (with Touch UI) as follows:
 
 Add attribute "regex" with the regular expression as its value. If you want to print a custom error
 message, you can also add the attribute "regex-errormsg" with the error message as its value.
@@ -100,7 +100,7 @@ message, you can also add the attribute "regex-errormsg" with the error message 
 ```
 
 ##### Rich text max. length validator
-Use the rich text max. length validator in your _cq_dialog.xml of AEM 6.3 (with Touch UI) as follows:
+Use the rich text max. length validator in your _cq_dialog.xml of AEM 6.5 (with Touch UI) as follows:
 
 Add attribute "maxlength" with the maximum number of characters as its value.
 <br/>E.g. maxlength="100" will allow maximum 100 characters (HTML tags are not being taken into account)
@@ -116,7 +116,7 @@ Add attribute "maxlength" with the maximum number of characters as its value.
 ```
 
 ### Requirements
-* AEM 6.3 with Touch UI
+* AEM 6.5 with Touch UI
 
 ### Development
 Build locally with Maven
@@ -125,8 +125,8 @@ Build locally with Maven
 ``` 
 
 
-[travis-master]: https://travis-ci.org/namics/aem-authoring-extensions.svg?branch=6.3%2Fmaster
-[travis-develop]: https://travis-ci.org/namics/aem-authoring-extensions.svg?branch=6.3%2Fdevelop
+[travis-master]: https://travis-ci.org/namics/aem-authoring-extensions.svg?branch=6.5%2Fmaster
+[travis-develop]: https://travis-ci.org/namics/aem-authoring-extensions.svg?branch=6.5%2Fdevelop
 [travis-url]: https://travis-ci.org/namics/aem-authoring-extensions
 [maven-central-version]: https://maven-badges.herokuapp.com/maven-central/com.namics.oss.aem/authoring-extensions/badge.svg
 [maven-central]: https://maven-badges.herokuapp.com/maven-central/com.namics.oss.aem/authoring-extensions
