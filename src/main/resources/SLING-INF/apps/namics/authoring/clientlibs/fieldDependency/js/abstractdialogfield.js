@@ -89,7 +89,7 @@
                 }
 
                 // save if field was required into separate data attribute
-                if (!$el.attr(ns.AbstractDialogField.ATTR_REQUIRED) && $foundationField !== undefined) {
+                if (!$el.attr(ns.AbstractDialogField.ATTR_REQUIRED) && $foundationField !== undefined && typeof $foundationField.isRequired === "function") {
                     $el.attr(ns.AbstractDialogField.ATTR_REQUIRED, $foundationField.isRequired());
                 }
 
@@ -105,7 +105,7 @@
                     // call function to show element
                     ctrl.show($el);
                     // set original "aria-required" attribute if target element is being shown
-                    if ($foundationField !== undefined) {
+                    if ($foundationField !== undefined && typeof $foundationField.setRequired === "function") {
                         $foundationField.setRequired($el.attr(ns.AbstractDialogField.ATTR_REQUIRED) === "true");
                     }
                 } else {
@@ -118,7 +118,7 @@
                         // call function to hide element
                         ctrl.hide($el);
                         // remove original "aria-required" attribute if target element is being hidden
-                        if ($foundationField !== undefined) {
+                        if ($foundationField !== undefined && typeof $foundationField.setRequired === "function") {
                             $foundationField.setRequired(false);
                         }
                         // trigger validation after setting or removing the "aria-required" attribute
@@ -150,7 +150,7 @@
                 var $el = $(this),
                     $foundationField = $el.adaptTo("foundation-field");
                 // save if field was required into separate data attribute
-                if (!$el.attr(ns.AbstractDialogField.ATTR_REQUIRED) && $foundationField !== undefined) {
+                if (!$el.attr(ns.AbstractDialogField.ATTR_REQUIRED) && $foundationField !== undefined && typeof $foundationField.isRequired === "function") {
                     $el.attr(ns.AbstractDialogField.ATTR_REQUIRED, $foundationField.isRequired());
                 }
 
@@ -158,14 +158,14 @@
                 if (isPaneVisible) {
                     ctrl.show($el);
                     // set original "aria-required" attribute if target element is being shown
-                    if ($foundationField !== undefined) {
+                    if ($foundationField !== undefined && typeof $foundationField.setRequired === "function") {
                         $foundationField.setRequired($el.attr(ns.AbstractDialogField.ATTR_REQUIRED) === "true");
                     }
                 } else {
                     if (!filteredSourceVisibilities.length) {
                         ctrl.hide($el);
                         // remove original "aria-required" attribute if target element is being hidden
-                        if ($foundationField !== undefined) {
+                        if ($foundationField !== undefined && typeof $foundationField.setRequired === "function") {
                             $foundationField.setRequired(false);
                         }
                         // trigger validation after setting or removing the "aria-required" attribute
@@ -244,7 +244,7 @@
         retrieveDisplayElementForDialogPane($pane) {
             // target is a dialog panel -> also hide the tab on top
             var tabId = $pane.attr('id'),
-                $tab = $('.coral-Dialog-content nav .coral-TabPanel-tab[aria-controls=' + tabId + ']'),
+                $tab = $('coral-dialog-content nav .coral-TabPanel-tab[aria-controls=' + tabId + ']'),
                 $displayElements = $().add($pane);
             if ($tab) {
                 return $displayElements.add($tab);
