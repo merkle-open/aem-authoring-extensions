@@ -24,7 +24,13 @@
          * @returns Value of the source element
          */
         getValue(sourceElement) {
-            return sourceElement.$el.is(":checked");
+            if(sourceElement.$el.is('input')){
+                return sourceElement.$el.is(":checked");
+            } else if (sourceElement.$el.is ('coral-checkbox')){
+                //coral ui 3 case
+                return sourceElement.$el[0].hasAttribute('checked');
+            }
+
         }
     }
 

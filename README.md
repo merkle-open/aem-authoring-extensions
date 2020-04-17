@@ -51,17 +51,20 @@ Use the field dependency in your _cq_dialog.xml of AEM 6.5 (with Touch UI) as fo
 
 ##### Source field (field that contains the value)
 Add attribute "fd-source-id" with a string identifier as its value.
-<br/>E.g. fd-source-id="showRequiredTextfield").
+<br/>E.g. fd-source-id="showRequiredTextfield".
 
 ```xml
 <showRequiredTitle
     jcr:primaryType="nt:unstructured"
-    sling:resourceType="granite/ui/components/foundation/form/checkbox"
-    fd-source-id="showRequiredTextfield"
+    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
     name="./showRequiredTextfield"
     text="Show required textfield"
     uncheckedValue="false"
-    value="{Boolean}true"/>
+    value="{Boolean}true">
+<granite:data
+          jcr:primaryType="nt:unstructured"
+          fd-source-id="showRequiredTextfield"/>
+</showRequiredTitle>
 ```
 
 ##### Target field (field that is shown / hidden based on source field's value)
@@ -72,12 +75,15 @@ You can add one or more values separated by space. If any of these values were s
 ```xml
 <requiredTitle
     jcr:primaryType="nt:unstructured"
-    sling:resourceType="granite/ui/components/foundation/form/textfield"
-    fd-values-showRequiredTextfield="true"
+    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
     fieldDescription="Max Characters: 54"
     fieldLabel="Textfield (required)"
     name="./checkboxRequiredTextfield"
-    required="true"/>
+    required="true">
+<granite:data
+          jcr:primaryType="nt:unstructured"
+          fd-values-showRequiredTextfield="true"/>
+</requiredTitle>
 ```
 
 #### Validators
@@ -89,6 +95,7 @@ Add attribute "regex" with the regular expression as its value. If you want to p
 message, you can also add the attribute "regex-errormsg" with the error message as its value.
 <br/>E.g. regex="^(\\w)+$" will only allow word characters (a-z, A-Z, 0-9, _)
 
+**Example for coral UI 2:**
 ```xml
 <textfield
     jcr:primaryType="nt:unstructured"
@@ -99,6 +106,19 @@ message, you can also add the attribute "regex-errormsg" with the error message 
     name="./textfield"/>
 ```
 
+**Example for coral UI 3:**
+```xml
+<text 
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+    fieldLabel="Text"
+    name="./text">
+       <granite:data
+          jcr:primaryType="nt:unstructured"
+          regex="^(\\w)+$"
+          regex-errormsg="Only word characters are allowed (a-z, A-Z, 0-9, _)."/>
+</text>
+```
 ##### Rich text max. length validator
 Use the rich text max. length validator in your _cq_dialog.xml of AEM 6.5 (with Touch UI) as follows:
 

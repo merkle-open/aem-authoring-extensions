@@ -15,17 +15,31 @@
 
     $(document).on("dialog-ready", function () {
         $("[" + ns.AbstractDialogField.ATTR_ID + "]").each(function () {
-            if ($(this).hasClass("coral-RadioGroup")) {
-                // handle radio group
-                new ns.DialogFieldRadio($(this));
-            } else if ($(this).hasClass("coral-Select")) {
-                // handle select
-                new ns.DialogFieldSelect($(this));
-            } else if ($(this).hasClass("coral-Checkbox-input")) {
-                // handle checkbox
-                new ns.DialogFieldCheckbox($(this));
-            }
+            var dialogElem = this;
+            waitForCoralElements(['.coral3-Panel'], this).then(function () {
+                if ($(dialogElem).hasClass("coral-RadioGroup")) {
+                    // handle radio group
+                    new ns.DialogFieldRadio($(dialogElem));
+                } else if ($(dialogElem).hasClass("coral-Select") || $(dialogElem).hasClass("coral3-Select")) {
+                    // handle select
+                    new ns.DialogFieldSelect($(dialogElem));
+                } else if ($(dialogElem).hasClass("coral-Checkbox-input") || $(dialogElem).hasClass("coral3-Checkbox")) {
+                    // handle checkbox for coral ui 2 and ui 3
+                    new ns.DialogFieldCheckbox($(dialogElem));
+                }
+            });
         });
     });
+
+    function waitForCoralElements(selectors, dialog){
+        return Promise.all(selectors.map(function (selector) {
+            return Promise.all($(selector,dialog).get().map(function (coralelem) {
+                return new Promise(function (resolve) {
+                    Coral.commons.ready(coralelem, resolve);
+                })
+            }))
+
+        }))
+    }
 
 })(document, Namics.authoring, Granite.$);

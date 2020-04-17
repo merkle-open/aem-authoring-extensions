@@ -225,6 +225,8 @@
         retrieveDisplayElements($targetElement) {
             if (this.isPane($targetElement)) {
                 return this.retrieveDisplayElementForDialogPane($targetElement);
+            } else if (this.isCoralUi3Pane($targetElement)){
+                return this.retrieveDisplayElementForCoralUi3DialogPane($targetElement);
             }
 
             // return field wrapper of target element if it exists
@@ -257,7 +259,31 @@
          * @return True, if the element is a pane. False, otherwise.
          */
         isPane($element) {
-            return $element && $element.hasClass("coral-TabPanel-pane");
+            return $element && ($element.hasClass("coral-TabPanel-pane"));
+        }
+
+
+        retrieveDisplayElementForCoralUi3DialogPane($pane) {
+            // target is a dialog panel -> also hide the tab on top
+            // find the the coral ui 3 panel
+            var $panel = $pane.closest(".coral3-Panel");
+            var $displayElements = $().add($pane);
+
+            console.log("my test 1");
+            console.log($panel.get(0).id);
+
+            if($panel){
+                var $tab = $('.coral3-Tab[aria-controls=' + $panel.get(0).id + ']');
+                if ($tab) {
+                    $displayElements =  $displayElements.add($tab);
+                }
+            }
+
+            return $displayElements;
+        }
+
+        isCoralUi3Pane($element){
+            return $element.parent("coral-panel-content").length > 0;
         }
     }
 
