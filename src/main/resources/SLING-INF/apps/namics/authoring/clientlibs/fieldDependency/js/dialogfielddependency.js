@@ -16,7 +16,7 @@
     $(document).on("dialog-ready", function () {
         $("[" + ns.AbstractDialogField.ATTR_ID + "]").each(function () {
             var dialogElem = this;
-            waitForCoralElements(['.coral3-Panel'], this).then(function () {
+            Coral.commons.ready(function () {
                 if ($(dialogElem).hasClass("coral-RadioGroup")) {
                     // handle radio group
                     new ns.DialogFieldRadio($(dialogElem));
@@ -30,16 +30,5 @@
             });
         });
     });
-
-    function waitForCoralElements(selectors, dialog){
-        return Promise.all(selectors.map(function (selector) {
-            return Promise.all($(selector,dialog).get().map(function (coralelem) {
-                return new Promise(function (resolve) {
-                    Coral.commons.ready(coralelem, resolve);
-                })
-            }))
-
-        }))
-    }
 
 })(document, Namics.authoring, Granite.$);

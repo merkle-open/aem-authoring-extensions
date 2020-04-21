@@ -269,9 +269,6 @@
             var $panel = $pane.closest(".coral3-Panel");
             var $displayElements = $().add($pane);
 
-            console.log("my test 1");
-            console.log($panel.get(0).id);
-
             if($panel){
                 var $tab = $('.coral3-Tab[aria-controls=' + $panel.get(0).id + ']');
                 if ($tab) {
