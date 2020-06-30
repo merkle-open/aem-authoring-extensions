@@ -15,7 +15,7 @@ With this project you will be able to use different authoring extensions in [Ado
     <dependency>
       <groupId>com.namics.oss.aem</groupId>
       <artifactId>authoring-extensions</artifactId>
-      <version>2.0.0</version>
+      <version>2.0.1</version>
     </dependency>
 ```
 
