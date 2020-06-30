@@ -24,7 +24,8 @@
          * @returns Value of the source element
          */
         getValue(sourceElement) {
-            return sourceElement.$el.find(".coral-Radio-input:checked").val();
+            return sourceElement.$el.find(".coral-Radio-input:checked").val()
+                || sourceElement.$el.find(".coral3-Radio[checked]").val();
         }
     }
 

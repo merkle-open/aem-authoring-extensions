@@ -14,7 +14,7 @@
          */
         registerEvents(sourceElement) {
             var ctrl = this;
-            sourceElement.$el.on("selected", function (event) {
+            sourceElement.$el.on("selected change", function (event) {
                 ctrl.handleVisibility(sourceElement, event);
             });
         }
@@ -24,7 +24,8 @@
          * @returns Value of source field
          */
         getValue(sourceElement) {
-            return sourceElement.$el.find(".coral-Select-select option:selected").val();
+            return sourceElement.$el.find(".coral-Select-select option:selected").val()
+                || sourceElement.$el.find("coral-select-item[selected]").val();
         }
     }
 
